@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { RegisterContainer, RegisterTitle, RegisterForm, RegisterLabel, RegisterInput, RegisterButton } from './StyledRegister'
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -24,27 +25,24 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <RegisterContainer>
+      <RegisterTitle>Register</RegisterTitle>
+      <RegisterForm onSubmit={handleSubmit}>
+        <RegisterLabel>
           Name:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
-        <br />
-        <label>
+          <RegisterInput type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </RegisterLabel>
+        <RegisterLabel>
           Email:
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <br />
-        <label>
+          <RegisterInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </RegisterLabel>
+        <RegisterLabel>
           Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit">Register</button>
-      </form>
-    </div>
+          <RegisterInput type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </RegisterLabel>
+        <RegisterButton type="submit">Register</RegisterButton>
+      </RegisterForm>
+    </RegisterContainer>
   );
 };
 

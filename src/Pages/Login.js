@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser, loginUser } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { RegisterContainer, RegisterTitle, RegisterForm, RegisterLabel, RegisterInput, RegisterButton } from './StyledRegister'
+
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoggedIn } = useSelector(state => state.auth);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // useEffect(() => {
-  //   dispatch(loginUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/contacts');
+    }
+  }, [isLoggedIn, dispatch, navigate]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -23,39 +28,36 @@ const Login = () => {
     };
 
     dispatch(loginUser(userData));
-    
 
     setEmail('');
     setPassword('');
-
-    
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <RegisterContainer>
+      <RegisterTitle>Login</RegisterTitle>
+      <RegisterForm onSubmit={handleSubmit}>
+        <RegisterLabel>
           Email:
-          <input
+          <RegisterInput
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-        </label>
+        </RegisterLabel>
         <br />
-        <label>
+        <RegisterLabel>
           Password:
-          <input
+          <RegisterInput
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-        </label>
+        </RegisterLabel>
         <br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+        <RegisterButton type="submit">Login</RegisterButton>
+      </RegisterForm>
+    </RegisterContainer>
   );
 };
 

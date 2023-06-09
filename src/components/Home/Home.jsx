@@ -1,13 +1,14 @@
-import 
+import React from "react";
+import {StyledHome} from './StyledHome'
 
 
 const Home = () => {
 
 
 return (
-    <div>
-
-    </div>
+    <StyledHome>
+        <p>The End?</p>
+    </StyledHome>
 );
 
 };

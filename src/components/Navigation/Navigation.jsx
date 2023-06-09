@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { token, getCurrentUser, logoutUser } from '../../redux/authSlice';
 import UserMenu from '../UserMenu/UserMenu';
+import { StyledNavigation, StyledNavUl } from './StyledNavigation';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const dispatch = useDispatch();
 
   return (
-    <nav>
-      <ul>
-      <li>
+    <StyledNavigation>
+      <StyledNavUl>
+        <li>
           <Link to="/">Home</Link>
         </li>
         <li>
@@ -20,17 +19,13 @@ const Navigation = () => {
         <li>
           <Link to="/login">Login</Link>
         </li>
-        <li>
-          <Link to="/contacts">Contacts</Link>
-        </li>
-
-        <>
+        {isLoggedIn && (
           <li>
             <UserMenu />
           </li>
-        </>
-      </ul>
-    </nav>
+        )}
+      </StyledNavUl>
+    </StyledNavigation>
   );
 };
 
