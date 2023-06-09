@@ -9,7 +9,6 @@ const ContactList = () => {
   const dispatch = useDispatch();
 
   console.log(contacts);
-  
 
   const handleDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
@@ -24,7 +23,7 @@ const ContactList = () => {
       {filteredContacts.map(contact => (
         <LiCSS key={contact.id}>
           <span>{contact.name}: </span>
-          <span>{contact.phone} </span>
+          <span>{contact.number} </span>
           <button onClick={() => handleDeleteContact(contact.id)}>
             Delete
           </button>
