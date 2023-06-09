@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUser, loginUser } from '../redux/authSlice';
+import { loginUser } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { RegisterContainer, RegisterTitle, RegisterForm, RegisterLabel, RegisterInput, RegisterButton } from './StyledRegister'
 
