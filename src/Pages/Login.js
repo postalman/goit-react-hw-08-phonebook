@@ -32,7 +32,7 @@ const Login = () => {
     setEmail('');
     setPassword('');
 
-    // navigate('/contacts');
+    
   };
 
   
