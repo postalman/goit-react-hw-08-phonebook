@@ -2,8 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { RegisterContainer, RegisterTitle, RegisterForm, RegisterLabel, RegisterInput, RegisterButton } from './StyledRegister'
-
+import {
+  RegisterContainer,
+  RegisterTitle,
+  RegisterForm,
+  RegisterLabel,
+  RegisterInput,
+  RegisterButton,
+} from './StyledRegister';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -31,11 +37,8 @@ const Login = () => {
 
     setEmail('');
     setPassword('');
-
-    
   };
 
-  
   return (
     <RegisterContainer>
       <RegisterTitle>Login</RegisterTitle>
