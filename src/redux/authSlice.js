@@ -16,9 +16,9 @@ export const registerUser = createAsyncThunk(
   'auth/registerUser',
   async userData => {
     const response = await axios.post(`${backendUrl}/signup`, userData);
-    const { token, user } = response.data;
-    token.set(token);
-    return { token, user };
+
+    token.set(response.data.token);
+    return response.data;
   }
 );
 

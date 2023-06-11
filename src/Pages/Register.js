@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { RegisterContainer, RegisterTitle, RegisterForm, RegisterLabel, RegisterInput, RegisterButton } from './StyledRegister'
+import {
+  RegisterContainer,
+  RegisterTitle,
+  RegisterForm,
+  RegisterLabel,
+  RegisterInput,
+  RegisterButton,
+} from './StyledRegister';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -11,7 +18,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const userData = {
@@ -20,8 +27,10 @@ const Register = () => {
       password,
     };
 
-    dispatch(registerUser(userData));
-    navigate('/login');
+    try {
+      await dispatch(registerUser(userData)).unwrap();
+      navigate('/contacts');
+    } catch (error) {}
   };
 
   return (
@@ -30,15 +39,27 @@ const Register = () => {
       <RegisterForm onSubmit={handleSubmit}>
         <RegisterLabel>
           Name:
-          <RegisterInput type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <RegisterInput
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
         </RegisterLabel>
         <RegisterLabel>
           Email:
-          <RegisterInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <RegisterInput
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
         </RegisterLabel>
         <RegisterLabel>
           Password:
-          <RegisterInput type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <RegisterInput
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
         </RegisterLabel>
         <RegisterButton type="submit">Register</RegisterButton>
       </RegisterForm>

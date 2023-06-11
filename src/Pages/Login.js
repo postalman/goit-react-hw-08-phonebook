@@ -17,7 +17,7 @@ const Login = () => {
     if (isLoggedIn) {
       navigate('/contacts');
     }
-  }, [isLoggedIn, dispatch, navigate]);
+  }, [isLoggedIn, navigate]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -31,8 +31,11 @@ const Login = () => {
 
     setEmail('');
     setPassword('');
+
+    // navigate('/contacts');
   };
 
+  
   return (
     <RegisterContainer>
       <RegisterTitle>Login</RegisterTitle>
